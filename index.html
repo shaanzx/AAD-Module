@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>AJAX Example</title>
+</head>
+<body>
+
+<h1>This is an Example Project for AJAX</h1>
+<p id="para">
+    Sample paragraph Sample paragraph Sample paragraph
+</p>
+<button id="ajax-btn">Send an AJAX request</button>
+
+<button id="db-btn">Load txt data</button>
+
+<script src="js/jquery-3.7.1.min.js"></script>
+
+<script>
+    $('#ajax-btn').click(function () {
+        var http = new XMLHttpRequest();
+        //Fix the open state
+        http.open('GET', 'index.html');
+        http.send();
+    });
+
+    $('#db-btn').click(function () {
+        console.log("Request Started!");
+        var txt = new XMLHttpRequest();
+        console.log(txt.readyState, "After the XMLHttpRequest Object create")
+
+        txt.open('GET', 'db/db.txt');
+        console.log(txt.readyState, "After the open method invoke");
+
+        console.log(txt.responseText);
+        console.log(txt.readyState, "After the response text printed");
+
+        txt.send();
+        console.log(txt.readyState, "After the send method invoke")
+
+        txt.onreadystatechange = function () {
+            console.log(txt.readyState, "Inside on  Ready state change Event!")
+            console.log(txt.responseText)
+        };
+
+        console.log("Request Finished!");
+    });
+</script>
+
+</body>
+</html>
